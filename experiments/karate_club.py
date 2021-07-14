@@ -22,10 +22,16 @@ Oof. I should have seen this coming. All one-edge perturbations
 of the graph are distance 2 away. That's because the subtraction
 L1 - L2 cancels out all of the terms in the graph Laplacians 
 except the four entries related to the edge of interest.
+
+I also ran a quick second experiment on 7/14. What magnitudes are
+typical for the largest eigenvalues of graph Laplacians? I
+learned that 2 is a pretty typical number.
+
 """
 
 def experiment():
     G = nx.karate_club_graph()
+    
 
     # repeated experiment: delete or add an edge. Compare to original graph.
     for _ in range(10):
@@ -39,5 +45,12 @@ def experiment():
         d = spectralgraphdistance.spectralgraphdistance(G, G2)
         print('distance:', d)
 
+def experiment2():
+    G1 = nx.gnm_random_graph(1000, 80000)
+    G2 = nx.gnm_random_graph(1000, 80000)
+    d = spectralgraphdistance.spectralgraphdistance(G1, G2)
+    print('distance:', d)
+
 if __name__ == '__main__':
-    experiment()
+    # experiment()
+    experiment2()
